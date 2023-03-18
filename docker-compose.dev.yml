@@ -1,0 +1,19 @@
+version: '3'
+services:
+  agrocontrolapi:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - ${PORT}:${PORT}
+
+  agrocontroldb:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - 25432:5432

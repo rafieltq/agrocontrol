@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "c5be728e-1b2c-4907-9c99-192d45b25e1f",
+		"name": "RENTSRD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13754819"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullname\": \"Albert\",\n    \"email\": \"contact@albert.do\",\n    \"password\": \"ThePassword123\",\n    \"confirmPassword\": \"ThePassword123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "## Response 2xx\n\n``` json\n{\n    \"message\": \"success\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjb250YWN0QGFsYmVydC5kbyIsImZ1bGxuYW1lIjoiQWxiZXJ0IiwiZW5hYmxlZCI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMy0wMS0zMVQwMjoxNjo1MC43NzJaIiwiaWF0IjoxNjc1MTMxNDExLCJleHAiOjE2Nzc3MjM0MTF9.4JJETScXydW17I9QNO4gTLXHOzOoQs7tn3bJU76E3xg\"\n    },\n    \"status\": 200\n}\n\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"contact@albert.do\",\n    \"password\": \"ThePassword123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "## Response 2xx\n\n``` json\n{\n    \"message\": \"success\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjb250YWN0QGFsYmVydC5kbyIsImZ1bGxuYW1lIjoiQWxiZXJ0IiwiZW5hYmxlZCI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMy0wMS0zMVQwMjoxNjo1MC43NzJaIiwiaWF0IjoxNjc1MTMxNDE0LCJleHAiOjE2Nzc3MjM0MTR9.poPt9W6tPGMDt6-KR_JnqcyOi7en6lWnEalTDkXz21w\"\n    },\n    \"status\": 200\n}\n\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AGREEMENT",
+			"item": [
+				{
+					"name": "Agreement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date_start\": \"2023-01-01\",\n    \"date_end\": \"2024-01-01\",\n    \"guaranty_amount\": 30000,\n    \"price_rent\": 10000,\n    \"active\": \"True\",\n    \"notificationdays\": 0,\n    \"property_id\":1,   \n    \"service_id\":1,   \n    \"mantcost_id\":1  , \n    \"tenant_id\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/agreement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"agreement"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PROPERTY",
+			"item": [
+				{
+					"name": "Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enable\":  \"True\",\n    \"town\":  \"CORDERO TEJADA\",\n    \"city\":  \"SAN FRANCISCO DE MACORIS\",\n    \"stree\":  \"H\",\n    \"apartament\":\"57\"  ,\n    \"size\":  \"100X100M2\",\n    \"bathroom\":  2,\n    \"bedrooms\":   2  ,\n    \"parkinglote\": 1    ,  \n    \"landlord_id\": 1,\n    \"notes\":  \"\",\n    \"coordenates\":\"\",\n    \"plusvalia\":  0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/property",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"property"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TENANT",
+			"item": [
+				{
+					"name": "Tenat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"name\":\"JUAN CAMPUSANO\",  \n\"phone1\":  \"8095555555\",\n\"celphone1\": \"8095555556\",\n\"address\":  \"CALLE M 75 URB. BLUE\",\n\"identification\":  \"06687988990\",\n\"email\":  \"jcampusano@nomail.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PAYMENT",
+			"item": [
+				{
+					"name": "Payment",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SERVICESLIST",
+			"item": [
+				{
+					"name": "Serviceslist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"description\":\"TELECABLE\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/serviceslist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"serviceslist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LANDLORD",
+			"item": [
+				{
+					"name": "LandLord",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IMAGE",
+			"item": [
+				{
+					"name": "Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \n    \"path\":\"/image.png\"  \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MANTCOST",
+			"item": [
+				{
+					"name": "Mantcost",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:5000/api"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
