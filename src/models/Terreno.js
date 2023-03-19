@@ -1,24 +1,27 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
+import Manager from './Manager';
 
-const Manager = sequelize.define('manager', {
+const Terreno = sequelize.define('terrain', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  full_name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  phone_number: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  email: {
+  location: {
     type: Sequelize.STRING,
     allowNull: true,
+  },
+  measures: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  current_crop: {
+    type: Sequelize.STRING,
+    allowNull: false,
   }
 });
 
-export default Manager;
+Terreno.belongsTo(Manager);
+
+export default Terreno;
