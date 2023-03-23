@@ -12,16 +12,13 @@ const Terreno = sequelize.define('terrain', {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  measures: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
   current_crop: {
     type: Sequelize.STRING,
     allowNull: false,
   }
 });
 
-Terreno.belongsTo(Manager);
+Terreno.belongsTo(Manager, { foreignKey: 'manager_id', as: 'manager'});
+Manager.hasMany(Terreno);
 
 export default Terreno;
